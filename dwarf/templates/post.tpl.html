@@ -1,0 +1,61 @@
+{% extends "layout.tpl.html" %}
+{% set author = inject_author(post.meta.author) %} 
+
+{% block body %}
+
+  <h2>{{ post.meta.title }}</h2>
+  <div class="post-meta"> Posted on {{ post.meta.date | strftime }} by {{author.name}} </div>
+
+  <hr>
+  <div class="post-lead">
+  {{ post.meta.lead | safe }}
+  </div>
+
+  <div class="post-content">
+  {{ post.content | safe }}
+  </div>
+  
+  <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'bantanova';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+  </div>
+
+  <hr />
+
+  {% endblock %}
+
+  {% block about %}
+  {% endblock %}
+
+  {% block author %}
+  <div class="well author">
+    <img src="http://www.gravatar.com/avatar/{{author.hash}}.jpg?s=80" class="avatar" width="80" height="80"/>
+    <h4>{{author.name}}</h4>
+    <div class="position">{{author.title}}</div>
+    <div class="bio">{{author.bio|safe}}</div>
+  </div>
+  {% endblock %}
+
+  {% block recent_posts %}
+  <h4>You may also like</h4>
+      <ul class="recent-posts">
+        {% for post in recent_posts %}
+          <li>{{ post.date | strftime}} | <a href="/posts/{{ post.slug }}">{{ post.title }} </a></li>
+        {% else %}
+          <li><em>No posts here so far</em></li>
+        {% endfor %}
+        </ul>
+
+{% endblock %}

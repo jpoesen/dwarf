@@ -1,0 +1,125 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400);
+
+body {
+	color: #444;
+  margin-top: 80px; /* keep at 50px at least to use the fixed top nav */
+  
+}
+
+body * {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+}
+
+strong {
+  font-weight: 400;
+}
+
+.navbar {
+  background: #f2f2f2;  
+}
+
+.navbar-brand {
+  font-weight: 400;
+}
+
+.sidebar .about,
+.sidebar .author {
+  font-size: 1em;
+
+}
+
+.sidebar .author h4 {
+  margin-bottom: 0.1em;
+}
+
+.sidebar .author .position {
+  font-size: 0.95em;
+}
+
+.sidebar .author .bio {
+  font-size: 0.90em;
+  margin-top: 1.2em;
+}
+
+
+footer {
+  font-size: 0.95em;
+	margin: 50px 0;
+}
+
+a.navbar-brand{
+  font-weight: 200;
+  font-size: 2em;
+}
+
+a:visited, a:link {
+  color: #8e0800;
+}
+
+
+.container .row {
+  font-size: 1.2em;  
+}
+
+
+
+
+.post-lead {
+  border-bottom: solid #eee 1px;
+  font-style: italic;
+  margin-bottom: 1em;  
+  padding-bottom: 1em;
+}
+
+.post-content p {
+  margin-bottom: 20px;
+}
+
+.post-content li {
+  margin-bottom: 0.8em;
+}
+
+ul.posts {
+  padding-left: 0;
+}
+
+ul.posts li {
+  border-bottom: solid #eee 1px;
+  font-size: 1.4em;
+  list-style-type: none;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+ul.posts li .lead {
+  color: #888;
+  font-size: 0.78em;
+  font-style: italic;
+}
+
+ul.posts li .readmore {
+  font-size: 0.75em;
+}
+
+ul.recent-posts {
+  margin-left: 0;
+  padding: 0 0.2em;
+}
+
+
+ul.recent-posts li {
+  border-bottom: solid #eee 1px;
+  font-size: 0.9em;
+  list-style-type: none;
+  margin-bottom: 0.9em;
+  padding-bottom: 1em;
+}
+
+
+
+
+
+
+
+

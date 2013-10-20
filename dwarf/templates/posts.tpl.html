@@ -1,0 +1,22 @@
+{% extends "layout.tpl.html" %}
+
+{% block body %}
+
+    <ul class="posts">
+      {% for post in posts %}
+        <li>
+          <span class="date">{{ post.date | strftime}} </span>| 
+          <a href="/posts/{{ post.slug }}">{{ post.title }} </a><br />
+          <span class="lead">{{ post.lead}}</span> <br />
+          <span class="readmore"> <a href="/posts/{{ post.slug }}"> Continue reading &raquo;</a> </span>
+        </li>
+      {% else %}
+        <li><em>No posts here so far</em></li>
+      {% endfor %}
+      </ul>
+
+{% endblock %}
+
+{% block authors %}
+authors
+{% endblock %}

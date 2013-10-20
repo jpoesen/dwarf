@@ -1,0 +1,16 @@
+{% extends "layout.tpl.html" %}
+
+
+
+{% block body %}
+
+<h1>title goes here</h1>
+
+  {% if page.content %}
+  
+    {{ page.content|safe }}
+  {% else %}
+    no content found
+  {% endif %}
+
+{% endblock %}
