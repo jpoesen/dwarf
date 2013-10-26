@@ -23,6 +23,14 @@ setup(
         "itsdangerous==0.23",
         "wsgiref==0.1.2",
     ],
+    classifiers=[
+        "Programming Language :: Python :: 2.7",
+        "Development Status :: 1 - Alpha",
+        "License :: See LICENSE",
+        "Natural Language :: French",
+        "Operating System :: OS Independent",
+        "Topic :: static site generator",
+    ],
 
 
 )
