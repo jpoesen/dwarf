@@ -118,7 +118,9 @@ def foo():
 @app.context_processor
 def recent_posts():
     files=content_list('blog')
-    newest_first = sorted(files, key=operator.itemgetter("date"), reverse=True)
+    newest_first = sorted(files, 
+                    key=operator.itemgetter("date"), 
+                    reverse=True)
     return dict(recent_posts=newest_first[:4])
 
 @app.context_processor
