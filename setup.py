@@ -26,10 +26,9 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 2.7",
         "Development Status :: 3 - Alpha",
-        "License :: See LICENSE",
         "Natural Language :: French",
         "Operating System :: OS Independent",
-        "Topic :: static site generator",
+        "Topic :: Software Development",
     ],
 
 
