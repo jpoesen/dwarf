@@ -51,4 +51,4 @@ Right now we are assuming a lot of things and hiding behind 'convention over con
 
 :strong:`Licence?`
 
-Good question. How about the `BSD License <http://flask.pocoo.org/docs/license/>`_ , the same one [Flask](http://flask.pocoo.org) uses?
+Good question. How about the `BSD License <http://flask.pocoo.org/docs/license/>`_ , the same one `Flask <http://http://flask.pocoo.org/>`_ uses?
