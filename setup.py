@@ -25,7 +25,7 @@ setup(
     ],
     classifiers=[
         "Programming Language :: Python :: 2.7",
-        "Development Status :: 1 - Alpha",
+        "Development Status :: 3 - Alpha ,
         "License :: See LICENSE",
         "Natural Language :: French",
         "Operating System :: OS Independent",
