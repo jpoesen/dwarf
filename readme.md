@@ -27,20 +27,20 @@ No SQL. No NOSQL. All source content is stored in flat markdown files:
 rendered publicly.)
 
 
-** Your Dwarf is so pretty.**
+**Your Dwarf is so pretty.**
 
 Oh you. Out of the box Dwarf uses [Twitter's Bootstrap](http://getbootstrap.com) to make itself purdy for gentleman callers.  Any lipstick will do though. Go nuts.
 
-** What about pictures and discussions and such?**
+**What about pictures and discussions and such?**
 
 Dwarf has lots of specialized friends, like [Gravatar](http://en.gravatar.com/) for author avatars and [Disqus](http://disqus.com/) to power comments, all ready to go.
 
 Multimedia content will have to be hosted elsewhere for now - Dwarf has no intention of handling all that himself, though some kind of ajaxy wizardy interface to those third party thingies may be cooked up later.
 
-** What holds the future?**
+**What holds the future?**
 
 Right now we are assuming a lot of things and hiding behind 'convention over configuration' to justify lots of magicking about. We need to move stuff into a simple config file, write unit tests and produce documentation. Stabilize now, add features later. 
 
-** Licence?**
+**Licence?**
 
 Good question. How about the [BSD Licence](http://flask.pocoo.org/docs/license/), the same one [Flask](http://flask.pocoo.org) uses?
