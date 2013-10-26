@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request, url_for
 from datetime import datetime
-import hashlib, markdown, operator, os, sys
+import hashlib, markdown, operator, pagination, os, sys
 
 app = Flask(__name__)
 app.config.update(
@@ -39,11 +39,31 @@ def blogpost(slug):
     post = {'meta': meta, 'content': markup}
     return render_template('post.tpl.html', post=post)
 
-@app.route("/")
-def index():
+@app.route('/', defaults={'page': 1})
+@app.route('/page/<int:page>')
+def index(page):
      files=content_list('blog')
-     newest_first = sorted(files, key=operator.itemgetter("date"), reverse=True)
-     return render_template('posts.tpl.html', posts=newest_first)
+     newest_first = sorted(files,
+                           key=operator.itemgetter("date"),
+                           reverse=True)
+     count        = len(newest_first)
+     newest_first = get_newest_first_for_page(
+         newest_first , page, pagination.PER_PAGE)
+     if not newest_first and page != 1:
+        raise
+     pagination_ = pagination.Pagination(
+         page, pagination.PER_PAGE, count)
+     return render_template('posts.tpl.html',
+                    pagination=pagination_,
+                            posts=newest_first )
+     
+def get_newest_first_for_page(newest_first , page, per_page):
+    if page == 1 :return newest_first[:per_page]
+    start = (page-1) * per_page
+    try:
+        return newest_first[start : start + per_page ]
+    except :
+        return None
 
 def content_load(filename):
     # TODO check if file exists, if exist: open, if not, open content/404.
@@ -145,6 +165,13 @@ def _md_meta_to_dict(md):
     for key in md.Meta.keys():
         items[key] = md.Meta[key][0]
     return items
+
+def url_for_other_page(page):
+    args = request.view_args.copy()
+    args['page'] = page
+    return url_for(request.endpoint, **args)
+    
+app.jinja_env.globals['url_for_other_page'] = url_for_other_page
 
 if __name__ == "__main__":
     app.run()

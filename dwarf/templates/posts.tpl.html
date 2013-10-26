@@ -1,20 +1,36 @@
-{% extends "layout.tpl.html" %}
+{%extends "layout.tpl.html" %}
 
 {% block body %}
+<ul class="posts">
+  {% for post in posts %}
+    <li>
+      <span class="date">{{ post.date | strftime}} </span>| 
+      <a href="/posts/{{ post.slug }}">{{ post.title }} </a><br />
+      <span class="lead">{{ post.lead}}</span> <br />
+      <span class="readmore"> <a href="/posts/{{ post.slug }}"> Continue reading &raquo;</a> </span>
+    </li>
+  {% else %}
+    <li><em>No posts here so far</em></li>
+  {% endfor %}
+  </ul>
 
-    <ul class="posts">
-      {% for post in posts %}
-        <li>
-          <span class="date">{{ post.date | strftime}} </span>| 
-          <a href="/posts/{{ post.slug }}">{{ post.title }} </a><br />
-          <span class="lead">{{ post.lead}}</span> <br />
-          <span class="readmore"> <a href="/posts/{{ post.slug }}"> Continue reading &raquo;</a> </span>
-        </li>
+  <div class="pagination">
+  {%- for page in pagination.iter_pages() %}
+    {% if page %}
+      {% if page != pagination.page %}
+        <a href="{{ url_for_other_page(page) }}">{{ page }}</a>
       {% else %}
-        <li><em>No posts here so far</em></li>
-      {% endfor %}
-      </ul>
-
+        <strong>{{ page }}</strong>
+      {% endif %}
+    {% else %}
+      <span class="ellipsis">...</span>
+    {% endif %}
+  {%- endfor %}
+  {% if pagination.has_next %}
+    <a href="{{ url_for_other_page(pagination.page + 1)
+      }}">Next &raquo;</a>
+  {% endif %}
+  </div>
 {% endblock %}
 
 {% block authors %}
