@@ -4,6 +4,10 @@ various contributors:
 Development Lead:
 - Joeri Poesen <jpoesen@gmail.com>
 
-Contributions:
+Contributors:
+- Alioune Dia: feature contributions, code cleanup
+- Patrick Nsukami: dwarf pip package maintainer
 
-- ZOMG your chance to be the first!
+Acknowledgements:
+- Pocoo, orginal creators of Flask
+- Armin Ronacher, whose pagination code (http://flask.pocoo.org/snippets/44/) we incorporated 
