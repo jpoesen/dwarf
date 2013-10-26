@@ -5,13 +5,20 @@ from datetime import datetime
 import hashlib, markdown, operator, os, sys
 
 app = Flask(__name__)
+app.config.update(
+    DEBUG=True,
+    # Make sure the app root folder contains a /content/ folder
+    # (or a symlink to one), or change the value of CONTENT_PATH to 
+    # whatever suits you.
+    CONTENT_PATH = os.path.join(os.path.dirname(__file__)) + 'content/'
+)
 
 # --- routes
 
 @app.errorhandler(404)
 def page_not_found():
     # TODO: write to log
-    data = content_load(os.path.join(os.path.dirname(__file__), 'content/pages/404.md'))
+    data = content_load('pages/404.md')
     md = markdown.markdown(data)
     return render_template('page.tpl.html', page=md), 404
 
@@ -26,7 +33,7 @@ def page_not_found():
 @app.route("/posts/<slug>")
 def blogpost(slug):
     md = markdown.Markdown(extensions = ['meta'])
-    data = content_load(os.path.join(os.path.dirname(__file__),"content/blog/{0}.md".format(slug)))
+    data = content_load("blog/{0}.md".format(slug))
     markup = md.convert(data.decode('utf-8'))
     meta = _md_meta_to_dict(md)
     post = {'meta': meta, 'content': markup}
@@ -38,20 +45,19 @@ def index():
      newest_first = sorted(files, key=operator.itemgetter("date"), reverse=True)
      return render_template('posts.tpl.html', posts=newest_first)
 
-def content_load(file):
+def content_load(filename):
     # TODO check if file exists, if exist: open, if not, open content/404.
-    with open(file, "r") as f:
+    with open(app.config['CONTENT_PATH'] + filename, "r") as f:
         data = f.read()
     return data
 
 def content_list(content_type):
     md = markdown.Markdown(extensions = ['meta'])
-    full_path = os.path.join(os.path.dirname(__file__), "content/{0}".format(content_type))
-    files = os.listdir(full_path)
+    files = os.listdir(app.config['CONTENT_PATH'] + content_type)
 
     content_items = []
     for fname  in files:
-        data = content_load(os.path.join(os.path.dirname(__file__), "content/{0}/{1}".format(content_type, fname)))
+        data = content_load("{0}/{1}".format(content_type, fname))
         md.convert(data.decode('utf-8'))
         meta = _md_meta_to_dict(md)
         
@@ -81,7 +87,7 @@ def content_list(content_type):
     return content_items
 
 def dwarf_render_page(slug, template='page.tpl.html'):
-    data = content_load(os.path.join(os.path.dirname(__file__), "content/pages/{0}.md".format(slug)))
+    data = content_load("pages/{0}.md".format(slug))
     page = {'content': markdown.markdown(data)}
     return render_template(template, page=page)
 
@@ -91,7 +97,7 @@ def dwarf_render_page(slug, template='page.tpl.html'):
 def utility_processor():
     def inject_author(identifier=''):
         md = markdown.Markdown(extensions = ['meta'])
-        data = content_load(os.path.join(os.path.dirname(__file__), "content/authors/{0}.md".format(identifier)))
+        data = content_load("authors/{0}.md".format(identifier))
         markup = md.convert(data.decode('utf-8'))
         
         author = {}
@@ -137,7 +143,6 @@ def _md_meta_to_dict(md):
     for key in md.Meta.keys():
         items[key] = md.Meta[key][0]
     return items
-
 
 if __name__ == "__main__":
     app.run()
