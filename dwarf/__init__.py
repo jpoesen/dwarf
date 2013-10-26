@@ -4,7 +4,9 @@ from flask import Flask, render_template, request, url_for
 from datetime import datetime
 import hashlib, markdown, operator, pagination, os, sys
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='templates/default')
+
 app.config.update(
     DEBUG=True,
     # Make sure the app root folder contains a /content/ folder
