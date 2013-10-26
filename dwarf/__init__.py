@@ -130,10 +130,6 @@ def utility_processor():
         return author
     return dict(inject_author=inject_author)
 
-@app.context_processor
-def foo():
-    return dict(foo='foo world')
-
 # Returns the 4 most recent blog posts
 @app.context_processor
 def recent_posts():
