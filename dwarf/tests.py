@@ -15,7 +15,7 @@ class DwarfTestCase(unittest.TestCase):
 
     def test_initialize(self):
         assert os.path.exists(os.path.join(self.basedir + '/content/')) == 1
-        assert os.listdir(os.path.join(self.basedir + '/content/')) == []
+        assert os.listdir(os.path.join(self.basedir + '/content/')) != []
 
     def test_home(self):
         rv = self.app.get('/')
