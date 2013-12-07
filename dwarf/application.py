@@ -1,16 +1,14 @@
-#!/usr/bien/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template, request, url_for
 from datetime import datetime
 import hashlib, markdown, operator, pagination, os, sys
 
-app = Flask(__name__, 
-            template_folder='templates/default')
-
+app = Flask(__name__)
 
 app.config.from_object('config.ProductionConfig')
-
+app.template_folder = app.config['TEMPLATE_PATH']
 
 # --- routes
 

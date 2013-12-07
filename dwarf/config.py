@@ -13,9 +13,9 @@ class Config(object):
     # whatever suits you.
     CONTENT_PATH = os.path.join(os.path.dirname(__file__)) + '/content/'
 
-
 class ProductionConfig(Config):
     DEBUG = True
+    TEMPLATE_PATH = 'templates/nova1'
 
 class DevelopmentConfig(Config):
     DEBUG = True
